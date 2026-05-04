@@ -39,13 +39,12 @@ const config = {
           editUrl: 'https://github.com/imranypatel/xp-org1/edit/main/',
 
           // Versioning — matches SemVer release tags
+          // "next (unreleased)" is hidden: snapshots are created only on MINOR/MAJOR.
+          // PATCH releases that touch only src/ (not docs/) do not increment the doc version.
+          // See docs/standards/versioning.md — Docusaurus Snapshot Policy.
           lastVersion: 'v0.6.0',
+          onlyIncludeVersions: ['v0.6.0', 'v0.5.0', 'v0.4.0', 'v0.3.1', 'v0.3.0', 'v0.2.0', 'v0.1.0'],
           versions: {
-            current: {
-              label: 'next (unreleased)',
-              path: 'next',
-              badge: true,
-            },
             'v0.6.0': {
               label: 'v0.6.0 (latest)',
               path: '/',

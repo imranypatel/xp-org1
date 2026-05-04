@@ -1,8 +1,8 @@
 # Versioning Standard
 
-**Version**: v0.3.0  
-**Issue**: [#5 — Documentation Site: Docusaurus v3 on GitHub Pages](https://github.com/imranypatel/xp-org1/issues/5)  
-**Amends**: [#1 — Governance: Issue-driven workflow standards](https://github.com/imranypatel/xp-org1/issues/1) (v0.1.0)  
+**Version**: v0.6.2  
+**Issue**: [#17 — hide 'next (unreleased)' + document Docusaurus snapshot policy](https://github.com/imranypatel/xp-org1/issues/17)  
+**Amends**: [#5 — Documentation Site: Docusaurus v3 on GitHub Pages](https://github.com/imranypatel/xp-org1/issues/5) (v0.3.0)  
 **Status**: Active
 
 ---
@@ -43,7 +43,7 @@ git push origin v0.1.0    # push the specific tag only (not --tags)
 
 ## Documentation Site Release Step
 
-Every release must include a Docusaurus version snapshot **before raising the PR**. This snapshots the current `docs/` tree so the published site shows the correct historical version.
+Every **MINOR or MAJOR** release must include a Docusaurus version snapshot **before raising the PR**. This snapshots the current `docs/` tree so the published site shows the correct historical version.
 
 ```bash
 # From the feature branch, after all docs changes are committed:
@@ -63,6 +63,27 @@ git commit -m "docs: snapshot vX.Y.Z for Docusaurus"
 - The snapshot commit is part of the feature branch and included in the PR
 - After merge and tag, GitHub Actions automatically rebuilds and deploys the documentation site
 - The new version appears in the version dropdown at https://imranypatel.github.io/xp-org1/
+
+---
+
+## Docusaurus Snapshot Policy
+
+Docusaurus snapshots capture only the `docs/` folder — **not** `src/theme/`, `docusaurus.config.js`, `.github/workflows/`, or any other code file.
+
+| Release type | Create Docusaurus snapshot? |
+|---|---|
+| **MAJOR** | ✅ Always |
+| **MINOR** | ✅ Always (new docs added) |
+| **PATCH — docs content changed** | ✅ Yes (doc revision, clarification, new plan doc) |
+| **PATCH — code only** (e.g., `src/`, config activation, workflow fix) | ❌ No — doc content is unchanged |
+
+When a PATCH release does **not** create a snapshot:
+- The git tag advances (e.g., v0.6.0 → v0.6.1)
+- The Docusaurus site continues to show the previous content version (e.g., v0.6.0)
+- This is intentional — doc content version ≠ git release version for code-only PATCHes
+- The divergence is documented in the release issue and this standard
+
+The `next (unreleased)` version is hidden from the site by default (`onlyIncludeVersions` in `docusaurus.config.js`). It only becomes visible if explicitly added back when previewing unreleased documentation changes.
 
 ---
 
