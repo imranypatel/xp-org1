@@ -22,7 +22,7 @@ export default function DocItemFooterWrapper(props) {
           </p>
           <Giscus
             repo="imranypatel/xp-org1"
-            repoId="R_kgDOI2qNng"
+            repoId="R_kgDOSMd4Hg"
             category="Training Q&A"
             categoryId="DIC_kwDOSMd4Hs4C8VdQ"
             mapping="pathname"
