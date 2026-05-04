@@ -23,6 +23,7 @@ const sidebars = {
         'standards/issue-workflow',
         'standards/domain-labels',
         'standards/agent-orchestration',
+        'standards/qa-system',
       ],
     },
 
@@ -123,6 +124,11 @@ const sidebars = {
           type: 'category',
           label: 'Issue 11: Learning as a System',
           items: ['plans/issue-11/learning-as-system-v0.1.0'],
+        },
+        {
+          type: 'category',
+          label: 'Issue 13: Interactive Q&A',
+          items: ['plans/issue-13/interactive-qa-v0.1.0'],
         },
       ],
     },

@@ -1,0 +1,149 @@
+name: AI Q&A Responder
+
+# Triggered whenever a comment is created on any GitHub Discussion.
+# Guards inside the job filter for Training Q&A category and non-bot authors.
+on:
+  discussion_comment:
+    types: [created]
+
+permissions:
+  discussions: write
+  contents: read
+
+jobs:
+  respond:
+    runs-on: ubuntu-latest
+    # Skip if the commenter is the Actions bot (prevents infinite loops)
+    if: ${{ github.event.comment.user.login != 'github-actions[bot]' }}
+
+    steps:
+      - name: Guard — Training Q&A category only
+        id: guard
+        run: |
+          CATEGORY="${{ github.event.discussion.category.name }}"
+          echo "Discussion category: $CATEGORY"
+          if [ "$CATEGORY" != "Training Q&A" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout repo (to read training content)
+        if: steps.guard.outputs.skip == 'false'
+        uses: actions/checkout@v4
+
+      - name: Resolve training content file from page URL
+        if: steps.guard.outputs.skip == 'false'
+        id: resolve
+        run: |
+          # Giscus stores the page pathname in the discussion title or maps via pathname.
+          # The discussion title is the page URL. Extract the path segment after the base URL.
+          DISCUSSION_TITLE="${{ github.event.discussion.title }}"
+          echo "Discussion title (page URL): $DISCUSSION_TITLE"
+
+          # Strip the base URL prefix to get the docs-relative path
+          BASE="https://imranypatel.github.io/xp-org1"
+          RELATIVE_PATH="${DISCUSSION_TITLE#$BASE}"
+          # Remove leading slash
+          RELATIVE_PATH="${RELATIVE_PATH#/}"
+
+          # Candidate file paths to try (Docusaurus can route /training/foo → docs/training/foo.md or docs/training/foo/index.md)
+          CANDIDATE_1="docs/${RELATIVE_PATH}.md"
+          CANDIDATE_2="docs/${RELATIVE_PATH}/index.md"
+
+          echo "Trying: $CANDIDATE_1"
+          echo "Trying: $CANDIDATE_2"
+
+          if [ -f "$CANDIDATE_1" ]; then
+            echo "content_file=$CANDIDATE_1" >> "$GITHUB_OUTPUT"
+          elif [ -f "$CANDIDATE_2" ]; then
+            echo "content_file=$CANDIDATE_2" >> "$GITHUB_OUTPUT"
+          else
+            echo "content_file=NOT_FOUND" >> "$GITHUB_OUTPUT"
+            echo "::warning::Could not resolve training content file for URL: $DISCUSSION_TITLE"
+          fi
+
+      - name: Call GitHub Models API and post AI answer
+        if: steps.guard.outputs.skip == 'false'
+        env:
+          GH_MODELS_PAT: ${{ secrets.GH_MODELS_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          QUESTION: ${{ github.event.comment.body }}
+          DISCUSSION_NODE_ID: ${{ github.event.discussion.node_id }}
+          CONTENT_FILE: ${{ steps.resolve.outputs.content_file }}
+        run: |
+          # Read training content (truncate to 12 000 chars to stay within model context limits)
+          if [ "$CONTENT_FILE" != "NOT_FOUND" ] && [ -f "$CONTENT_FILE" ]; then
+            PAGE_CONTENT=$(head -c 12000 "$CONTENT_FILE")
+          else
+            PAGE_CONTENT="(Training content file could not be resolved for this page.)"
+          fi
+
+          # Build the JSON payload for GitHub Models API (gpt-4o)
+          PAYLOAD=$(jq -n \
+            --arg system "You are a training assistant for an internal learning platform. A learner has asked a question while reading a specific training page. Your job is to help them understand the material.
+
+          Rules:
+          1. Answer ONLY if the question is clearly relevant to the training content provided below.
+          2. If the question is off-topic, unrelated to the content, or inappropriate, respond ONLY with the exact prefix: OUT_OF_SCOPE: followed by a one-sentence explanation.
+          3. Keep answers concise, educational, and accurate. Cite concepts from the content when helpful.
+          4. Do not answer questions about unrelated topics (personal advice, general trivia, other domains, etc.).
+
+          Training page content:
+          ---
+          $PAGE_CONTENT
+          ---" \
+            --arg user "$QUESTION" \
+            '{
+              model: "gpt-4o",
+              messages: [
+                { role: "system", content: $system },
+                { role: "user", content: $user }
+              ],
+              max_tokens: 800,
+              temperature: 0.3
+            }')
+
+          # Call GitHub Models API
+          API_RESPONSE=$(curl -s -X POST \
+            "https://models.inference.ai.azure.com/chat/completions" \
+            -H "Authorization: Bearer $GH_MODELS_PAT" \
+            -H "Content-Type: application/json" \
+            -d "$PAYLOAD")
+
+          AI_ANSWER=$(echo "$API_RESPONSE" | jq -r '.choices[0].message.content // empty')
+
+          if [ -z "$AI_ANSWER" ]; then
+            echo "::error::GitHub Models API returned no answer. Response: $API_RESPONSE"
+            exit 0  # Don't fail the workflow — just skip posting
+          fi
+
+          # Handle out-of-scope responses
+          if [[ "$AI_ANSWER" == OUT_OF_SCOPE:* ]]; then
+            REASON="${AI_ANSWER#OUT_OF_SCOPE: }"
+            REPLY_BODY="🤖 **AI Assistant**: Your question appears to be outside the scope of this training page. $REASON
+
+          Please ask questions relevant to the content on this page. If you have a general question, consider raising a GitHub Discussion in the appropriate category."
+          else
+            REPLY_BODY="🤖 **AI Assistant** *(powered by GitHub Models — answers are AI-generated and may be imperfect)*
+
+          $AI_ANSWER
+
+          ---
+          *Was this helpful? React with 👍 or 👎. Inaccurate? The training team reviews Q&A regularly — your feedback helps improve the content.*"
+          fi
+
+          # Post the reply via GitHub GraphQL API
+          MUTATION=$(jq -n \
+            --arg discussionId "$DISCUSSION_NODE_ID" \
+            --arg body "$REPLY_BODY" \
+            '{
+              query: "mutation AddComment($discussionId: ID!, $body: String!) { addDiscussionComment(input: {discussionId: $discussionId, body: $body}) { comment { id } } }",
+              variables: { discussionId: $discussionId, body: $body }
+            }')
+
+          curl -s -X POST \
+            "https://api.github.com/graphql" \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "$MUTATION" | jq '.errors // "Posted successfully"'
