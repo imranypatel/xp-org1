@@ -34,6 +34,38 @@ const sidebars = {
       items: ['models/README'],
     },
 
+    // Training — structured learning programs
+    {
+      type: 'category',
+      label: '🎓 Training',
+      collapsed: false,
+      items: [
+        'training/README',
+        {
+          type: 'category',
+          label: 'Systems Thinking Foundations',
+          collapsed: false,
+          items: [
+            'training/systems-thinking/overview',
+            'training/systems-thinking/module-1-introduction',
+            'training/systems-thinking/module-2-practitioner',
+            'training/systems-thinking/module-3-mastery',
+            {
+              type: 'category',
+              label: 'Assessments',
+              items: [
+                'training/systems-thinking/assessments/competency-rubric',
+                'training/systems-thinking/assessments/progress-tracker',
+                'training/systems-thinking/assessments/module-1-quiz',
+                'training/systems-thinking/assessments/module-2-quiz',
+                'training/systems-thinking/assessments/module-3-quiz',
+              ],
+            },
+          ],
+        },
+      ],
+    },
+
     // Plans — versioned implementation plans per issue
     {
       type: 'category',
@@ -59,6 +91,11 @@ const sidebars = {
           type: 'category',
           label: 'Issue 7: Plan Verbatim Standard',
           items: ['plans/issue-7/plan-verbatim-standard-v0.1.0'],
+        },
+        {
+          type: 'category',
+          label: 'Issue 9: ST Training',
+          items: ['plans/issue-9/st-training-v0.1.0'],
         },
       ],
     },

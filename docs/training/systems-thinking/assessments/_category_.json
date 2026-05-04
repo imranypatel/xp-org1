@@ -1,0 +1,8 @@
+{
+  "label": "Assessments",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Module quizzes, competency rubric, and team progress tracker for the ST training program."
+  }
+}
