@@ -24,7 +24,7 @@ export default function DocItemFooterWrapper(props) {
             repo="imranypatel/xp-org1"
             repoId="R_kgDOI2qNng"
             category="Training Q&A"
-            categoryId="REPLACE_WITH_CATEGORY_ID"
+            categoryId="DIC_kwDOSMd4Hs4C8VdQ"
             mapping="pathname"
             strict="0"
             reactionsEnabled="1"
