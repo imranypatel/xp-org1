@@ -41,13 +41,24 @@ jobs:
           DISCUSSION_TITLE="${{ github.event.discussion.title }}"
           echo "Discussion title (page URL): $DISCUSSION_TITLE"
 
-          # Strip the base URL prefix to get the docs-relative path
-          BASE="https://imranypatel.github.io/xp-org1"
-          RELATIVE_PATH="${DISCUSSION_TITLE#$BASE}"
-          # Remove leading slash
-          RELATIVE_PATH="${RELATIVE_PATH#/}"
+          # Giscus with mapping="pathname" sets the discussion title to the page pathname
+          # WITHOUT a leading slash. Observed format:
+          #   "xp-org1/docs/training/systems-thinking/overview"
+          # This sed strips everything up to and including the first "xp-org1/docs/"
+          # occurrence, handling all three possible Giscus title formats:
+          #   1. "xp-org1/docs/..."       (observed: pathname, no leading slash)
+          #   2. "/xp-org1/docs/..."      (raw pathname with leading slash)
+          #   3. "https://...xp-org1/docs/..." (full URL)
+          RELATIVE_PATH=$(echo "$DISCUSSION_TITLE" | sed 's|.*xp-org1/docs/||')
 
-          # Candidate file paths to try (Docusaurus can route /training/foo → docs/training/foo.md or docs/training/foo/index.md)
+          # Security: reject paths with traversal sequences or invalid characters
+          if ! echo "$RELATIVE_PATH" | grep -qE '^[a-zA-Z0-9/_-]+$'; then
+            echo "::warning::Invalid or unsafe RELATIVE_PATH rejected: $RELATIVE_PATH"
+            echo "content_file=NOT_FOUND" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Candidate file paths (Docusaurus routes /training/foo -> docs/training/foo.md or .../index.md)
           CANDIDATE_1="docs/${RELATIVE_PATH}.md"
           CANDIDATE_2="docs/${RELATIVE_PATH}/index.md"
 
