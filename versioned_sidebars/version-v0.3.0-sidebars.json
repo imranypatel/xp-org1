@@ -1,0 +1,62 @@
+{
+  "docsSidebar": [
+    {
+      "type": "doc",
+      "id": "intro",
+      "label": "🏠 Home"
+    },
+    {
+      "type": "category",
+      "label": "📐 Standards",
+      "collapsed": false,
+      "link": {
+        "type": "generated-index",
+        "title": "Governance Standards"
+      },
+      "items": [
+        "standards/systems-thinking",
+        "standards/versioning",
+        "standards/branching",
+        "standards/issue-workflow",
+        "standards/domain-labels",
+        "standards/agent-orchestration"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "🔬 Models",
+      "collapsed": false,
+      "items": [
+        "models/README"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "📋 Plans",
+      "collapsed": false,
+      "items": [
+        {
+          "type": "category",
+          "label": "Issue 1: Governance Workflow",
+          "items": [
+            "plans/issue-1/governance-workflow-v0.1.0"
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Issue 3: Systems Thinking Integration",
+          "items": [
+            "plans/issue-3/systems-thinking-integration-v0.1.0"
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Issue 5: Documentation Site",
+          "items": [
+            "plans/issue-5/documentation-site-v0.1.0"
+          ]
+        }
+      ]
+    }
+  ]
+}

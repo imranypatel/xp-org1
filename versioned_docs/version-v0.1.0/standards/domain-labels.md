@@ -1,7 +1,7 @@
 # Domain Labels Standard
 
 **Version**: v0.1.0  
-**Issue**: [#1 ΓÇö Governance: Issue-driven workflow standards](https://github.com/imranypatel/xp-org1/issues/1)  
+**Issue**: [#1 — Governance: Issue-driven workflow standards](https://github.com/imranypatel/xp-org1/issues/1)  
 **Status**: Active
 
 ---
@@ -26,7 +26,7 @@ Every GitHub Issue in `imranypatel/xp-org1` is tagged with:
 | `domain/sales` | `#f9d0c4` | Sales pipeline |
 | `domain/billing` | `#fef2c0` | Billing management |
 | `domain/procurement` | `#bfd4f2` | Procurement and vendor management |
-| `domain/payments` | `#ee0701` | Payment processing (≡ƒö┤ high risk ΓÇö always involves human review) |
+| `domain/payments` | `#ee0701` | Payment processing (🔴 high risk — always involves human review) |
 | `domain/hr` | `#c5def5` | Human resources |
 | `domain/crm` | `#fbca04` | Customer relationship management |
 | `domain/finance-accounts` | `#e11d48` | Finance and accounting |
@@ -55,7 +55,7 @@ Every GitHub Issue in `imranypatel/xp-org1` is tagged with:
 | `type/chore` | `#ededed` | Maintenance, refactoring |
 | `type/question` | `#d876e3` | Question or clarification needed |
 | `type/plan` | `#c5def5` | Plan document creation/revision |
-| `type/verbatim-cli` | `#fef2c0` | Verbatim CLI session capture (auxiliary ΓÇö used alongside a primary type label) |
+| `type/verbatim-cli` | `#fef2c0` | Verbatim CLI session capture (auxiliary — used alongside a primary type label) |
 
 ---
 
@@ -69,8 +69,8 @@ Status labels track where an issue is in its lifecycle. Only one status label at
 | `status/in-progress` | `#0e8a16` | Work in progress | Branch created, work underway |
 | `status/in-review` | `#1d76db` | Under review | PR raised |
 | `status/blocked` | `#ee0701` | Blocked | Work cannot proceed, waiting |
-| `status/done` | `#0e8a16` | Completed | PR merged, issue closed (must be applied manually ΓÇö GitHub auto-close does not apply labels) |
-| `status/cancelled` | `#b60205` | Cancelled ΓÇö no PR will be raised | Issue decided against, duplicated, or out of scope |
+| `status/done` | `#0e8a16` | Completed | PR merged, issue closed (must be applied manually — GitHub auto-close does not apply labels) |
+| `status/cancelled` | `#b60205` | Cancelled — no PR will be raised | Issue decided against, duplicated, or out of scope |
 | `status/wontfix` | `#ededed` | Will not be addressed | Issue acknowledged but explicitly deferred indefinitely |
 
 ---

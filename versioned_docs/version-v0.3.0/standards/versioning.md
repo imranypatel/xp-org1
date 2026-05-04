@@ -1,7 +1,8 @@
 # Versioning Standard
 
-**Version**: v0.1.0  
-**Issue**: [#1 — Governance: Issue-driven workflow standards](https://github.com/imranypatel/xp-org1/issues/1)  
+**Version**: v0.3.0  
+**Issue**: [#5 — Documentation Site: Docusaurus v3 on GitHub Pages](https://github.com/imranypatel/xp-org1/issues/5)  
+**Amends**: [#1 — Governance: Issue-driven workflow standards](https://github.com/imranypatel/xp-org1/issues/1) (v0.1.0)  
 **Status**: Active
 
 ---
@@ -37,6 +38,31 @@ git push origin v0.1.0    # push the specific tag only (not --tags)
 - Tags are **annotated** (`-a`) with a `-m` message — never lightweight, never omit `-m`
 - Tag message format: `vX.Y.Z: <short description> — Issue #N`
 - Push **only the specific tag**: `git push origin vX.Y.Z` (not `git push origin --tags`, which publishes all local tags including accidental or experimental ones)
+
+---
+
+## Documentation Site Release Step
+
+Every release must include a Docusaurus version snapshot **before raising the PR**. This snapshots the current `docs/` tree so the published site shows the correct historical version.
+
+```bash
+# From the feature branch, after all docs changes are committed:
+npm run docusaurus docs:version vX.Y.Z
+
+# This creates:
+#   versioned_docs/version-vX.Y.Z/   ← snapshot of current docs/
+#   versioned_sidebars/version-vX.Y.Z-sidebars.json
+# And updates:
+#   versions.json                     ← adds vX.Y.Z to the list
+
+# Stage and commit the snapshot:
+git add versioned_docs/ versioned_sidebars/ versions.json
+git commit -m "docs: snapshot vX.Y.Z for Docusaurus"
+```
+
+- The snapshot commit is part of the feature branch and included in the PR
+- After merge and tag, GitHub Actions automatically rebuilds and deploys the documentation site
+- The new version appears in the version dropdown at https://imranypatel.github.io/xp-org1/
 
 ---
 

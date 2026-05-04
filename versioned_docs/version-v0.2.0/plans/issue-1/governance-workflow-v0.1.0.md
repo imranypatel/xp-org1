@@ -1,11 +1,11 @@
 # Governance: Issue-Driven Workflow, Versioning, Branching, and Agent Orchestration
 
 **Plan Version**: v0.1.0  
-**Issue**: [#1 ΓÇö Governance: Issue-driven workflow standards](https://github.com/imranypatel/xp-org1/issues/1)  
+**Issue**: [#1 — Governance: Issue-driven workflow standards](https://github.com/imranypatel/xp-org1/issues/1)  
 **Branch**: `feature/1-governance-workflow`  
 **Status**: In Progress  
 **Principal Agent**: Anvil  
-**Risk**: ≡ƒö┤ (establishes standards affecting all future work)
+**Risk**: 🔴 (establishes standards affecting all future work)
 
 ---
 
@@ -29,14 +29,14 @@ This plan bootstraps that governance foundation.
 - [x] GitHub Issue #1 created with verbatim CLI session text
 - [x] Branch `feature/1-governance-workflow` created
 - [x] Label taxonomy created in repo (21 domain + 8 type + 5 status = 34 labels)
-- [x] `docs/standards/versioning.md` ΓÇö versioning scheme and tagging rules
-- [x] `docs/standards/branching.md` ΓÇö branch naming, scope, PR policy
-- [x] `docs/standards/issue-workflow.md` ΓÇö full issue lifecycle
-- [x] `docs/standards/domain-labels.md` ΓÇö label taxonomy reference
-- [x] `docs/standards/agent-orchestration.md` ΓÇö principal agent role and domainΓåÆagent map
-- [x] `docs/plans/issue-1/governance-workflow-v0.1.0.md` ΓÇö this plan
+- [x] `docs/standards/versioning.md` — versioning scheme and tagging rules
+- [x] `docs/standards/branching.md` — branch naming, scope, PR policy
+- [x] `docs/standards/issue-workflow.md` — full issue lifecycle
+- [x] `docs/standards/domain-labels.md` — label taxonomy reference
+- [x] `docs/standards/agent-orchestration.md` — principal agent role and domain→agent map
+- [x] `docs/plans/issue-1/governance-workflow-v0.1.0.md` — this plan
 - [x] `README.md` updated with governance overview
-- [ ] PR `feature/1-governance-workflow` ΓåÆ `main` raised (`Closes #1`)
+- [ ] PR `feature/1-governance-workflow` → `main` raised (`Closes #1`)
 - [ ] PR merged
 - [ ] Release tagged `v0.1.0` and pushed to origin
 
@@ -67,7 +67,7 @@ This plan bootstraps that governance foundation.
 
 ### Verbatim Capture
 **Decision**: CLI session prompts captured verbatim in issue body, labeled `type/verbatim-cli`  
-**Rationale**: Full traceability ΓÇö anyone can reconstruct why a decision was made
+**Rationale**: Full traceability — anyone can reconstruct why a decision was made
 
 ---
 
@@ -75,20 +75,20 @@ This plan bootstraps that governance foundation.
 
 | # | Action | Status |
 |---|--------|--------|
-| 1 | Create GitHub Issue #1 with verbatim text | Γ£à Done |
-| 2 | Create branch `feature/1-governance-workflow` | Γ£à Done |
-| 3 | Create 34 GitHub labels (domain + type + status) ΓÇö created via GitHub API separately from the staged diff | Γ£à Done |
-| 4 | Create 2 additional labels: `status/cancelled`, `status/wontfix` (added after review) | Γ£à Done |
-| 5 | Assign labels to Issue #1 | Γ£à Done |
-| 5 | Create `docs/standards/versioning.md` | Γ£à Done |
-| 6 | Create `docs/standards/branching.md` | Γ£à Done |
-| 7 | Create `docs/standards/issue-workflow.md` | Γ£à Done |
-| 8 | Create `docs/standards/domain-labels.md` | Γ£à Done |
-| 9 | Create `docs/standards/agent-orchestration.md` | Γ£à Done |
-| 10 | Create this plan document | Γ£à Done |
-| 11 | Update `README.md` | Γ£à Done |
-| 12 | Raise PR | ΓÅ│ Pending |
-| 13 | Merge and tag `v0.1.0` | ΓÅ│ Pending |
+| 1 | Create GitHub Issue #1 with verbatim text | ✅ Done |
+| 2 | Create branch `feature/1-governance-workflow` | ✅ Done |
+| 3 | Create 34 GitHub labels (domain + type + status) — created via GitHub API separately from the staged diff | ✅ Done |
+| 4 | Create 2 additional labels: `status/cancelled`, `status/wontfix` (added after review) | ✅ Done |
+| 5 | Assign labels to Issue #1 | ✅ Done |
+| 5 | Create `docs/standards/versioning.md` | ✅ Done |
+| 6 | Create `docs/standards/branching.md` | ✅ Done |
+| 7 | Create `docs/standards/issue-workflow.md` | ✅ Done |
+| 8 | Create `docs/standards/domain-labels.md` | ✅ Done |
+| 9 | Create `docs/standards/agent-orchestration.md` | ✅ Done |
+| 10 | Create this plan document | ✅ Done |
+| 11 | Update `README.md` | ✅ Done |
+| 12 | Raise PR | ⏳ Pending |
+| 13 | Merge and tag `v0.1.0` | ⏳ Pending |
 
 ---
 
@@ -120,8 +120,8 @@ The following concerns were raised during adversarial review and are intentional
 
 ## Related Documents
 
-- `docs/standards/versioning.md` ΓÇö versioning scheme
-- `docs/standards/branching.md` ΓÇö branching rules
-- `docs/standards/issue-workflow.md` ΓÇö full issue lifecycle
-- `docs/standards/domain-labels.md` ΓÇö label taxonomy
-- `docs/standards/agent-orchestration.md` ΓÇö agent orchestration
+- `docs/standards/versioning.md` — versioning scheme
+- `docs/standards/branching.md` — branching rules
+- `docs/standards/issue-workflow.md` — full issue lifecycle
+- `docs/standards/domain-labels.md` — label taxonomy
+- `docs/standards/agent-orchestration.md` — agent orchestration
