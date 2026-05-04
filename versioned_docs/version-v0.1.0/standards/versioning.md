@@ -1,8 +1,7 @@
 # Versioning Standard
 
-**Version**: v0.3.0  
-**Issue**: [#5 — Documentation Site: Docusaurus v3 on GitHub Pages](https://github.com/imranypatel/xp-org1/issues/5)  
-**Amends**: [#1 — Governance: Issue-driven workflow standards](https://github.com/imranypatel/xp-org1/issues/1) (v0.1.0)  
+**Version**: v0.1.0  
+**Issue**: [#1 ΓÇö Governance: Issue-driven workflow standards](https://github.com/imranypatel/xp-org1/issues/1)  
 **Status**: Active
 
 ---
@@ -13,9 +12,9 @@ All releases, documents, and revisions follow **Semantic Versioning** (`vMAJOR.M
 
 | Component | When to Increment | Reset on Increment |
 |-----------|------------------|--------------------|
-| **MAJOR** | Breaking workflow change, repo restructure, incompatible standard change | MINOR and PATCH → 0 |
-| **MINOR** | New domain support, new standard document, new feature addition | PATCH → 0 |
-| **PATCH** | Doc revision, clarification, small fix, typo, comment | — |
+| **MAJOR** | Breaking workflow change, repo restructure, incompatible standard change | MINOR and PATCH ΓåÆ 0 |
+| **MINOR** | New domain support, new standard document, new feature addition | PATCH ΓåÆ 0 |
+| **PATCH** | Doc revision, clarification, small fix, typo, comment | ΓÇö |
 
 - **Initial version**: `v0.1.0` (pre-stable governance bootstrap)
 - MAJOR = 0 means the governance standards are still being established
@@ -31,38 +30,13 @@ Every merge to `main` is tagged with the version that the PR represents:
 git fetch origin
 git checkout main
 git pull origin main
-git tag -a v0.1.0 -m "v0.1.0: Governance bootstrap — Issue #1"
+git tag -a v0.1.0 -m "v0.1.0: Governance bootstrap ΓÇö Issue #1"
 git push origin v0.1.0    # push the specific tag only (not --tags)
 ```
 
-- Tags are **annotated** (`-a`) with a `-m` message — never lightweight, never omit `-m`
-- Tag message format: `vX.Y.Z: <short description> — Issue #N`
+- Tags are **annotated** (`-a`) with a `-m` message ΓÇö never lightweight, never omit `-m`
+- Tag message format: `vX.Y.Z: <short description> ΓÇö Issue #N`
 - Push **only the specific tag**: `git push origin vX.Y.Z` (not `git push origin --tags`, which publishes all local tags including accidental or experimental ones)
-
----
-
-## Documentation Site Release Step
-
-Every release must include a Docusaurus version snapshot **before raising the PR**. This snapshots the current `docs/` tree so the published site shows the correct historical version.
-
-```bash
-# From the feature branch, after all docs changes are committed:
-npm run docusaurus docs:version vX.Y.Z
-
-# This creates:
-#   versioned_docs/version-vX.Y.Z/   ← snapshot of current docs/
-#   versioned_sidebars/version-vX.Y.Z-sidebars.json
-# And updates:
-#   versions.json                     ← adds vX.Y.Z to the list
-
-# Stage and commit the snapshot:
-git add versioned_docs/ versioned_sidebars/ versions.json
-git commit -m "docs: snapshot vX.Y.Z for Docusaurus"
-```
-
-- The snapshot commit is part of the feature branch and included in the PR
-- After merge and tag, GitHub Actions automatically rebuilds and deploys the documentation site
-- The new version appears in the version dropdown at https://imranypatel.github.io/xp-org1/
 
 ---
 
@@ -72,7 +46,7 @@ Documents include the version in their **filename**:
 
 ```
 docs/plans/issue-1/governance-workflow-v0.1.0.md
-docs/standards/versioning.md          ← standards documents omit version in name
+docs/standards/versioning.md          ΓåÉ standards documents omit version in name
                                          (they evolve in-place; use git history)
 ```
 
@@ -129,7 +103,7 @@ git tag --delete vX.Y.Z            # remove locally
 
 Tag deletion should be documented as a comment on the original issue.
 
-### 🔴-domain emergency
+### ≡ƒö┤-domain emergency
 
 If a Payments / Finance / Legal change is critically wrong and cannot wait for a PR cycle, a direct-to-main push is permitted **only** when all of the following are true:
 1. The principal agent explicitly documents the emergency in the relevant issue
@@ -141,8 +115,8 @@ This exception exists to prevent a broken billing or payment state from persisti
 ## Version Lifecycle
 
 ```
-v0.1.0  ← Governance bootstrap (this release)
-v0.1.1  ← Patch: doc fix or clarification
-v0.2.0  ← Minor: new domain or standard added
-v1.0.0  ← Major: governance standards declared stable
+v0.1.0  ΓåÉ Governance bootstrap (this release)
+v0.1.1  ΓåÉ Patch: doc fix or clarification
+v0.2.0  ΓåÉ Minor: new domain or standard added
+v1.0.0  ΓåÉ Major: governance standards declared stable
 ```

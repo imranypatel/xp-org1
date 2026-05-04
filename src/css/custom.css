@@ -1,0 +1,30 @@
+/**
+ * xp-org1 Documentation — custom theme tokens
+ * Docusaurus uses CSS variables for theming.
+ * Overrides for light and dark modes below.
+ */
+
+/* Light mode */
+:root {
+  --ifm-color-primary: #1a56a4;
+  --ifm-color-primary-dark: #174990;
+  --ifm-color-primary-darker: #154287;
+  --ifm-color-primary-darkest: #103370;
+  --ifm-color-primary-light: #1d63bb;
+  --ifm-color-primary-lighter: #2070cc;
+  --ifm-color-primary-lightest: #3b85d8;
+  --ifm-code-font-size: 92%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.07);
+}
+
+/* Dark mode */
+[data-theme='dark'] {
+  --ifm-color-primary: #4d9de0;
+  --ifm-color-primary-dark: #3a90d9;
+  --ifm-color-primary-darker: #2e8bd4;
+  --ifm-color-primary-darkest: #1d7bbf;
+  --ifm-color-primary-light: #60aae7;
+  --ifm-color-primary-lighter: #6eb3eb;
+  --ifm-color-primary-lightest: #90c7f2;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}

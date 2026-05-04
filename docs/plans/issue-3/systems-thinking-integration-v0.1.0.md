@@ -101,8 +101,8 @@ The same structural analysis applies whether the issue concerns HR capacity, cas
 
 ## Related Standards
 
-- [docs/standards/systems-thinking.md](../../../docs/standards/systems-thinking.md) — Full ST reference
-- [docs/models/README.md](../../../docs/models/README.md) — Model directory guide
-- [docs/standards/domain-labels.md](../../../docs/standards/domain-labels.md) — Label taxonomy including `st/`
-- [docs/standards/issue-workflow.md](../../../docs/standards/issue-workflow.md) — ST Analysis section in assessment template
-- [docs/standards/agent-orchestration.md](../../../docs/standards/agent-orchestration.md) — ST cross-cutting layer
+- [Standards: Systems Thinking](../../standards/systems-thinking.md) — Full ST reference
+- [Models](../../models/README.md) — Model directory guide
+- [Standards: Domain Labels](../../standards/domain-labels.md) — Label taxonomy including `st/`
+- [Standards: Issue Workflow](../../standards/issue-workflow.md) — ST Analysis section in assessment template
+- [Standards: Agent Orchestration](../../standards/agent-orchestration.md) — ST cross-cutting layer
