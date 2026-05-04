@@ -39,17 +39,22 @@ const config = {
           editUrl: 'https://github.com/imranypatel/xp-org1/edit/main/',
 
           // Versioning — matches SemVer release tags
-          lastVersion: 'v0.4.0',
+          lastVersion: 'v0.5.0',
           versions: {
             current: {
               label: 'next (unreleased)',
               path: 'next',
               badge: true,
             },
-            'v0.4.0': {
-              label: 'v0.4.0 (latest)',
+            'v0.5.0': {
+              label: 'v0.5.0 (latest)',
               path: '/',
               badge: false,
+            },
+            'v0.4.0': {
+              label: 'v0.4.0',
+              path: 'v0.4.0',
+              badge: true,
             },
             'v0.3.1': {
               label: 'v0.3.1',

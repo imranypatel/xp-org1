@@ -63,6 +63,28 @@ const sidebars = {
             },
           ],
         },
+        {
+          type: 'category',
+          label: 'Learning as a System',
+          collapsed: false,
+          items: [
+            'training/learning-as-a-system/overview',
+            'training/learning-as-a-system/module-1-introduction',
+            'training/learning-as-a-system/module-2-practitioner',
+            'training/learning-as-a-system/module-3-mastery',
+            {
+              type: 'category',
+              label: 'Assessments',
+              items: [
+                'training/learning-as-a-system/assessments/competency-rubric',
+                'training/learning-as-a-system/assessments/progress-tracker',
+                'training/learning-as-a-system/assessments/module-1-quiz',
+                'training/learning-as-a-system/assessments/module-2-quiz',
+                'training/learning-as-a-system/assessments/module-3-quiz',
+              ],
+            },
+          ],
+        },
       ],
     },
 
@@ -96,6 +118,11 @@ const sidebars = {
           type: 'category',
           label: 'Issue 9: ST Training',
           items: ['plans/issue-9/st-training-v0.1.0'],
+        },
+        {
+          type: 'category',
+          label: 'Issue 11: Learning as a System',
+          items: ['plans/issue-11/learning-as-system-v0.1.0'],
         },
       ],
     },
