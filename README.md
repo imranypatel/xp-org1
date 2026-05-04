@@ -2,6 +2,8 @@
 
 **Agentic Organizer based on GitHub Platform**
 
+[![Documentation](https://img.shields.io/badge/docs-imranypatel.github.io%2Fxp--org1-blue?style=flat-square)](https://imranypatel.github.io/xp-org1/)
+
 An issue-driven, AI-agent-orchestrated organizer that handles work across multiple business
 and technical domains using GitHub as the backbone for tracking, versioning, and collaboration.
 

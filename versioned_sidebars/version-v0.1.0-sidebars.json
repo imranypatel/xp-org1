@@ -1,0 +1,29 @@
+{
+  "docsSidebar": [
+    {
+      "type": "category",
+      "label": "📐 Standards",
+      "collapsed": false,
+      "link": {"type": "generated-index", "title": "Governance Standards"},
+      "items": [
+        "standards/versioning",
+        "standards/branching",
+        "standards/issue-workflow",
+        "standards/domain-labels",
+        "standards/agent-orchestration"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "📋 Plans",
+      "collapsed": false,
+      "items": [
+        {
+          "type": "category",
+          "label": "Issue 1: Governance Workflow",
+          "items": ["plans/issue-1/governance-workflow-v0.1.0"]
+        }
+      ]
+    }
+  ]
+}
