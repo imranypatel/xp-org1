@@ -1,0 +1,8 @@
+{
+  "label": "Assessments",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Quizzes, portfolio assessments, competency rubric and progress tracker for Learning as a System"
+  }
+}
