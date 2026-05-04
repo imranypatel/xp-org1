@@ -1,7 +1,8 @@
 # Issue Workflow Standard
 
-**Version**: v0.1.0  
-**Issue**: [#1 — Governance: Issue-driven workflow standards](https://github.com/imranypatel/xp-org1/issues/1)  
+**Version**: v0.2.0  
+**Issue**: [#3 — Governance: Integrate Systems Thinking as foundational cross-cutting approach](https://github.com/imranypatel/xp-org1/issues/3)  
+**Amends**: [#1 — Governance: Issue-driven workflow standards](https://github.com/imranypatel/xp-org1/issues/1) (v0.1.0)
 **Status**: Active
 
 ---
@@ -149,3 +150,37 @@ assign the **primary** domain label and add a comment listing secondary domains.
 For cross-domain issues, the principal agent will recommend a team of agents.
 
 See `domain-labels.md` for the full label taxonomy.
+
+---
+
+## Systems Thinking (ST) Analysis
+
+All work in `xp-org1` is analyzed through a Systems Thinking lens. For qualifying issues, the Agent Assessment comment must include an **🔄 Systems Analysis** section. See [docs/standards/systems-thinking.md](systems-thinking.md) for the full ST reference.
+
+### When ST Analysis is required
+
+| Issue type | ST Analysis |
+|------------|------------|
+| 🔴 High-risk (Payments, Finance, Legal) | **Required** |
+| 🟡 Medium-risk, strategic or architectural | **Recommended** |
+| 🟢 Low-risk, additive, purely mechanical | Optional |
+| Any issue labeled `st/archetype` or `st/leverage-point` | **Required** |
+
+### ST Analysis template
+
+Include this after the **Recommended Tools / Services** section in the assessment comment:
+
+```markdown
+## 🔄 Systems Analysis
+
+**Affected Stocks**: [What accumulates? e.g., team capacity, technical debt, customer trust]
+**Affected Flows**: [What rates change? e.g., deployment frequency, churn rate, hiring rate]
+**Feedback Loops**:
+  - R (Reinforcing): [Loop description — or "None identified"]
+  - B (Balancing): [Loop description — or "None identified"]
+**Delays**: [Time lags with counterintuitive potential — or "None identified"]
+**Archetype**: [Matching archetype — or "None identified"]
+**Leverage Point**: [Meadows level 1–12 and justification]
+**ST Labels**: [Which `st/` labels apply]
+**Model**: [Link to docs/models/issue-N/ — or "Not modeled"]
+```

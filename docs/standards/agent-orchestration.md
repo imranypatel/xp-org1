@@ -1,7 +1,8 @@
 # Agent Orchestration Standard
 
-**Version**: v0.1.0  
-**Issue**: [#1 — Governance: Issue-driven workflow standards](https://github.com/imranypatel/xp-org1/issues/1)  
+**Version**: v0.2.0  
+**Issue**: [#3 — Governance: Integrate Systems Thinking as foundational cross-cutting approach](https://github.com/imranypatel/xp-org1/issues/3)  
+**Amends**: [#1 — Governance: Issue-driven workflow standards](https://github.com/imranypatel/xp-org1/issues/1) (v0.1.0)
 **Status**: Active
 
 ---
@@ -43,6 +44,20 @@ When a new issue is opened, the principal agent posts an assessment comment:
 
 ### Recommended Tools / Services
 - [Tool/service name]: [Why it's appropriate]
+
+### 🔄 Systems Analysis
+*(Required for 🔴-risk issues and issues labeled `st/archetype` or `st/leverage-point`. Recommended for 🟡. Optional for 🟢.)*
+
+**Affected Stocks**: [What accumulates? e.g., team capacity, technical debt, customer trust]
+**Affected Flows**: [What rates change? e.g., deployment frequency, churn rate, hiring rate]
+**Feedback Loops**:
+  - R (Reinforcing): [Loop description — or "None identified"]
+  - B (Balancing): [Loop description — or "None identified"]
+**Delays**: [Time lags with counterintuitive potential — or "None identified"]
+**Archetype**: [Matching archetype — or "None identified"]
+**Leverage Point**: [Meadows level 1–12 and justification]
+**ST Labels**: [Which `st/` labels apply]
+**Model**: [Link to docs/models/issue-N/ — or "Not modeled"]
 
 ### Plan
 Will be created at `docs/plans/issue-N/{slug}-v0.1.0.md` on branch `feature/N-slug`.
@@ -145,3 +160,53 @@ If the principal agent and domain agent reach different conclusions, the princip
 All inter-agent communication is recorded as **comments on the GitHub Issue**.
 No agent decision is made silently — every assessment, question, recommendation,
 and status update is posted to the issue for full traceability.
+
+---
+
+## Systems Thinking as Cross-Cutting Layer
+
+**Systems Thinking (ST) is the analytical lens for every domain.** Before proposing solutions, the principal agent analyzes the structural dynamics of the issue — what stocks are affected, what flows change, which feedback loops operate, and where the highest-leverage intervention lies.
+
+This analysis is **not optional for 🔴-risk issues**. It is recommended for all 🟡 issues and optional for 🟢.
+
+See [docs/standards/systems-thinking.md](systems-thinking.md) for the full ST reference.
+
+### ST step in the Assessment Comment
+
+The Assessment Comment template now includes a **🔄 Systems Analysis** section after **Recommended Tools / Services**:
+
+```markdown
+## 🔄 Systems Analysis
+
+**Affected Stocks**: [What accumulates? e.g., team capacity, technical debt, customer trust]
+**Affected Flows**: [What rates change? e.g., deployment frequency, churn rate, hiring rate]
+**Feedback Loops**:
+  - R (Reinforcing): [Loop description — or "None identified"]
+  - B (Balancing): [Loop description — or "None identified"]
+**Delays**: [Time lags with counterintuitive potential — or "None identified"]
+**Archetype**: [Matching archetype — or "None identified"]
+**Leverage Point**: [Meadows level 1–12 and justification]
+**ST Labels**: [Which `st/` labels apply]
+**Model**: [Link to docs/models/issue-N/ — or "Not modeled"]
+```
+
+### Updated Domain → Agent Mapping (v0.2.0)
+
+All domain agent engagements now include an ST analysis step. The column **ST Layer** notes the expected ST work for that domain's issues.
+
+| Domain | Principal Agent | Supporting Agents | Risk Floor | ST Layer |
+|--------|----------------|-------------------|-----------|----------|
+| Governance / Architecture | Anvil | — | 🟡 | Full analysis required |
+| Infrastructure / DevOps | Anvil | DevOps agent | 🟡 | Stocks: reliability, tech debt |
+| IT / Workspace | Anvil | IT support agent | 🟢 | Optional |
+| Branching / Versioning | Anvil | — | 🟢 | Optional |
+| Finance / Accounts | Anvil (coordinator) | Finance modeling agent + human review | 🔴 | Required — cash stocks, flows |
+| Billing | Anvil (coordinator) | Billing agent + human review | 🔴 | Required — revenue flows |
+| Payments | Anvil (coordinator) | Payments agent + human review | 🔴 | Required — transaction stocks |
+| Legal / Compliance | Anvil (coordinator) | Legal review agent + human review | 🔴 | Required — risk stocks |
+| HR | Anvil (coordinator) | HR/business process agent | 🟡 | Recommended — capacity stocks |
+| CRM / Sales | Anvil (coordinator) | CRM agent | 🟡 | Recommended — trust, pipeline stocks |
+| Marketing | Anvil (coordinator) | Marketing/growth agent | 🟢–🟡 | Recommended — brand equity stock |
+| Procurement | Anvil (coordinator) | Procurement agent | 🟡 | Recommended — supply stocks |
+| Production / Project Mgmt | Anvil (coordinator) | PM orchestration agent | 🟡 | Recommended — backlog stocks |
+| Workflow Automation | Anvil | Workflow agent | 🟡 | Recommended — throughput flows |
