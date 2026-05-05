@@ -42,13 +42,13 @@ by convention.
 
 ## Current Team Members
 
-| GitHub Username | Added |
-|----------------|-------|
-| `imranypatel` | v0.7.0 |
-| `atiq-orbitdev` | v0.7.0 |
-| `patelyahya` | v0.7.0 |
-| `patelyousuf` | v0.7.0 |
-| `hmjk-2025` | v0.7.0 |
+| GitHub Username | Added | Removed |
+|----------------|-------|---------|
+| `imranypatel` | v0.7.0 | — |
+| `atiq-orbitdev` | v0.7.0 | — |
+| `patelyousuf` | v0.7.0 | — |
+| `hmjk-2025` | v0.7.0 | — |
+| `patelyahya` | v0.7.0 | v0.8.1 |
 
 ## Adding a Team Member
 
