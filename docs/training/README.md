@@ -1,7 +1,7 @@
 # Training Catalog
 
-**Version**: v0.5.0  
-**Issue**: [#11 — HR Training: Learning as a System](https://github.com/imranypatel/xp-org1/issues/11)  
+**Version**: v0.8.0  
+**Issue**: [#27 — HR Training: Mastering Human Emotions through ST](https://github.com/imranypatel/xp-org1/issues/27)
 **Domain**: `domain/hr` → `subdomain/training`  
 **Status**: Active
 
@@ -21,6 +21,7 @@ Training is an HR domain responsibility but the content is cross-cutting: every 
 |---------|--------|--------|--------|
 | [Systems Thinking Foundations](./systems-thinking/overview.md) | Cross-cutting (HR delivery) | L1 Introduction → L2 Practitioner → L3 Mastery | ✅ Active (v0.4.0) |
 | [Learning as a System](./learning-as-a-system/overview.md) | HR / Cross-cutting | L1 The Learning System → L2 Learning System Design → L3 Organizational Learning | ✅ Active (v0.5.0) |
+| [Mastering Human Emotions through ST](./human-emotions/overview.md) | HR / Cross-cutting | L1 Emotions as a System → L2 Emotional Dynamics in Practice → L3 Emotional Intelligence as Systems Leadership | ✅ Active (v0.8.0) |
 
 ---
 
@@ -50,7 +51,7 @@ The following training areas are identified but not yet scoped (future issues):
 
 ## Progress Tracking
 
-- **Individual tracking**: [ST Training Progress Tracker](./systems-thinking/assessments/progress-tracker.md) · [LaaS Progress Tracker](./learning-as-a-system/assessments/progress-tracker.md)
+- **Individual tracking**: [ST Training Progress Tracker](./systems-thinking/assessments/progress-tracker.md) · [LaaS Progress Tracker](./learning-as-a-system/assessments/progress-tracker.md) · [Human Emotions Progress Tracker](./human-emotions/assessments/progress-tracker.md)
 - **Visual board**: GitHub Projects Kanban (Issue #10 — planned)
 
 ---
