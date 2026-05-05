@@ -19,8 +19,9 @@ jobs:
     steps:
       - name: Guard — Training Q&A category only
         id: guard
+        env:
+          CATEGORY: ${{ github.event.discussion.category.name }}
         run: |
-          CATEGORY="${{ github.event.discussion.category.name }}"
           echo "Discussion category: $CATEGORY"
           if [ "$CATEGORY" != "Training Q&A" ]; then
             echo "skip=true" >> "$GITHUB_OUTPUT"
@@ -86,10 +87,11 @@ jobs:
       - name: Resolve training content file from page URL
         if: steps.guard.outputs.skip == 'false' && steps.membership.outputs.authorized == 'true'
         id: resolve
+        env:
+          DISCUSSION_TITLE: ${{ github.event.discussion.title }}
         run: |
           # Giscus stores the page pathname in the discussion title or maps via pathname.
           # The discussion title is the page URL. Extract the path segment after the base URL.
-          DISCUSSION_TITLE="${{ github.event.discussion.title }}"
           echo "Discussion title (page URL): $DISCUSSION_TITLE"
 
           # Giscus with mapping="pathname" sets the discussion title to the page pathname
