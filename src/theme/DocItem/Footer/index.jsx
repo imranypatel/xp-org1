@@ -15,9 +15,10 @@ export default function DocItemFooterWrapper(props) {
         <div style={{ marginTop: '2.5rem', borderTop: '1px solid var(--ifm-toc-border-color)', paddingTop: '1.5rem' }}>
           <h3>💬 Ask a Question</h3>
           <p>
-            Sign in with your GitHub account to ask questions about this training content.
-            An AI assistant (powered by GitHub Models) will reply within a few minutes — but
-            only if your question is relevant to the content on this page.{' '}
+            Sign in with your <strong>registered team GitHub account</strong> to ask questions about
+            this training content. An AI assistant (powered by GitHub Models) will reply within a
+            few minutes — but only if your question is relevant to the content on this page and your
+            account is on the team member list.{' '}
             <em>Answers are AI-generated and may be imperfect; use your own judgement.</em>
           </p>
           <Giscus
