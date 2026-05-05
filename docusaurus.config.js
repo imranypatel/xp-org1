@@ -42,13 +42,18 @@ const config = {
           // "next (unreleased)" is hidden: snapshots are created only on MINOR/MAJOR.
           // PATCH releases that touch only src/ (not docs/) do not increment the doc version.
           // See docs/standards/versioning.md — Docusaurus Snapshot Policy.
-          lastVersion: 'v0.6.0',
-          onlyIncludeVersions: ['v0.6.0', 'v0.5.0', 'v0.4.0', 'v0.3.1', 'v0.3.0', 'v0.2.0', 'v0.1.0'],
+          lastVersion: 'v0.7.0',
+          onlyIncludeVersions: ['v0.7.0', 'v0.6.0', 'v0.5.0', 'v0.4.0', 'v0.3.1', 'v0.3.0', 'v0.2.0', 'v0.1.0'],
           versions: {
-            'v0.6.0': {
-              label: 'v0.6.0 (latest)',
+            'v0.7.0': {
+              label: 'v0.7.0 (latest)',
               path: '/',
               badge: false,
+            },
+            'v0.6.0': {
+              label: 'v0.6.0',
+              path: 'v0.6.0',
+              badge: true,
             },
             'v0.5.0': {
               label: 'v0.5.0',
