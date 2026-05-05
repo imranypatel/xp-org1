@@ -32,8 +32,59 @@ jobs:
         if: steps.guard.outputs.skip == 'false'
         uses: actions/checkout@v4
 
-      - name: Resolve training content file from page URL
+      - name: Check team membership
         if: steps.guard.outputs.skip == 'false'
+        id: membership
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMENTER: ${{ github.event.comment.user.login }}
+          DISCUSSION_NODE_ID: ${{ github.event.discussion.node_id }}
+        run: |
+          # Fail fast if the registry file is missing — treat this as a workflow error,
+          # not as "user is unauthorized", to avoid wrongly rejecting valid team members.
+          if [[ ! -r .github/team-members.yml ]]; then
+            echo "::error::Team member registry .github/team-members.yml is missing or unreadable"
+            exit 1
+          fi
+
+          # GitHub usernames are case-insensitive — normalize to lowercase for matching.
+          # team-members.yml uses lowercase entries; this grep handles any casing in the file.
+          COMMENTER_LC=$(echo "$COMMENTER" | tr '[:upper:]' '[:lower:]')
+          echo "Checking membership for: $COMMENTER_LC"
+
+          if grep -qiE "^\s*-\s+${COMMENTER_LC}\s*$" .github/team-members.yml; then
+            echo "authorized=true" >> "$GITHUB_OUTPUT"
+            echo "Commenter '$COMMENTER_LC' is a registered team member."
+          else
+            echo "authorized=false" >> "$GITHUB_OUTPUT"
+            echo "Commenter '$COMMENTER_LC' is NOT a registered team member — posting rejection."
+
+            REJECTION=$(jq -n --arg user "$COMMENTER" \
+              '"🔒 **AI Assistant — Access Restricted**\n\nThe AI Q&A feature is available to registered team members only. Your GitHub account (`" + $user + "`) is not currently on the team member list.\n\nIf you believe you should have access, please contact a team admin to be added to the registry."')
+
+            MUTATION=$(jq -n \
+              --arg discussionId "$DISCUSSION_NODE_ID" \
+              --argjson body "$REJECTION" \
+              '{
+                query: "mutation AddComment($discussionId: ID!, $body: String!) { addDiscussionComment(input: {discussionId: $discussionId, body: $body}) { comment { id } } }",
+                variables: { discussionId: $discussionId, body: $body }
+              }')
+
+            REJECT_RESULT=$(curl -s -X POST \
+              "https://api.github.com/graphql" \
+              -H "Authorization: Bearer $GITHUB_TOKEN" \
+              -H "Content-Type: application/json" \
+              -d "$MUTATION")
+
+            if echo "$REJECT_RESULT" | jq -e '.errors' > /dev/null 2>&1; then
+              echo "::error::Failed to post rejection message: $(echo "$REJECT_RESULT" | jq -c '.errors')"
+            else
+              echo "Rejection message posted successfully"
+            fi
+          fi
+
+      - name: Resolve training content file from page URL
+        if: steps.guard.outputs.skip == 'false' && steps.membership.outputs.authorized == 'true'
         id: resolve
         run: |
           # Giscus stores the page pathname in the discussion title or maps via pathname.
@@ -75,7 +126,7 @@ jobs:
           fi
 
       - name: Call GitHub Models API and post AI answer
-        if: steps.guard.outputs.skip == 'false'
+        if: steps.guard.outputs.skip == 'false' && steps.membership.outputs.authorized == 'true'
         env:
           GH_MODELS_PAT: ${{ secrets.GH_MODELS_PAT }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
